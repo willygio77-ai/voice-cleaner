@@ -1,0 +1,68 @@
+# Ambienti virtuali Python
+.venv/
+venv/
+env/
+.env/
+
+# Cartelle di build e distribuzione PyInstaller
+build/
+dist/
+
+# Modelli AI pesanti (scaricabili separatamente / via cache LOCALAPPDATA)
+models/
+
+# Binari di sistema (ffmpeg, ecc.)
+bin/
+
+# File audio/video di test locali
+*.mp3
+*.wav
+*.m4a
+*.flac
+*.ogg
+*.opus
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.avi
+Adelaide*/
+
+# Output di test e elaborazione
+test_output/
+outputs/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyc
+.pytest_cache/
+*.egg-info/
+.eggs/
+
+# Ambiente di sviluppo IDE
+.idea/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstash
+
+# File di sistema Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Log
+*.log
+
+# File temporanei
+*.tmp
+*.bak
+*.swp
+*~
+
+# Coverage
+.coverage
+htmlcov/
