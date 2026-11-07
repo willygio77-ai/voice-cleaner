@@ -287,5 +287,6 @@ def create_ui():
 if __name__ == "__main__":
     app = create_ui()
     theme = gr.themes.Soft(primary_hue="indigo", secondary_hue="slate")
-    # Avvio locale su 127.0.0.1 porta 7860
-    app.queue().launch(server_name="127.0.0.1", server_port=7860, inbrowser=False, theme=theme)
+    # Su Hugging Face Spaces ascolta su 0.0.0.0, in locale su 127.0.0.1
+    server_name = "0.0.0.0" if os.environ.get("SPACE_ID") else "127.0.0.1"
+    app.queue().launch(server_name=server_name, server_port=7860, inbrowser=False, theme=theme)

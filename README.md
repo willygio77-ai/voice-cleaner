@@ -1,3 +1,15 @@
+---
+title: Voice Cleaner
+emoji: 🎙️
+colorFrom: indigo
+colorTo: blue
+sdk: gradio
+sdk_version: 6.31.0
+app_file: app.py
+pinned: false
+license: mit
+---
+
 # 🎙️ Voice Cleaner — Rimozione Rumore Vocale (Web & Desktop Windows)
 
 Applicazione per la rimozione intelligente dei rumori di fondo (fruscio, ventole, condizionatori, traffico, riverbero e ronzii di rete) da registrazioni di parlato (interviste, podcast, riunioni, lezioni e video).

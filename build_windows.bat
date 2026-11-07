@@ -31,9 +31,9 @@ if not exist ".venv\Scripts\python.exe" (
 echo [2/5] Verifica e installazione dipendenze da requirements.txt...
 where uv >nul 2>&1
 if %ERRORLEVEL% EQU 0 (
-    uv pip install -r requirements.txt --python ".\.venv\Scripts\python.exe"
+    uv pip install -r requirements-desktop.txt --python ".\.venv\Scripts\python.exe"
 ) else (
-    ".venv\Scripts\python.exe" -m pip install -r requirements.txt
+    ".venv\Scripts\python.exe" -m pip install -r requirements-desktop.txt
 )
 if %ERRORLEVEL% NEQ 0 (
     echo ERRORE nell'installazione delle dipendenze.
