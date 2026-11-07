@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Voice Cleaner</string>
+    <string name="tagline">Rimozione Rumore Vocale 100% Offline</string>
+    <string name="subtitle">Basato sul modello neurale profondo DTLN</string>
+
+    <string name="section_input">1. Origine Audio</string>
+    <string name="btn_record">Registra Voce</string>
+    <string name="btn_stop_record">Ferma Registrazione</string>
+    <string name="btn_open_file">Scegli File Audio (WAV)</string>
+    <string name="recording_active">Registrazione in corso: %s</string>
+    <string name="file_loaded">File caricato: %s</string>
+
+    <string name="section_settings">2. Regolazione Pulizia</string>
+    <string name="intensity_label">Intensità Riduzione (Dry / Wet): %d%%</string>
+    <string name="intensity_hint">Consigliato 85-95% per conservare la naturalezza della voce</string>
+
+    <string name="btn_start_denoise">✨ Rimuovi Rumore di Fondo</string>
+    <string name="btn_cancel">Annulla</string>
+    <string name="processing_audio">Elaborazione neurale in corso: %d%%</string>
+    <string name="processing_complete">Audio ripulito con successo!</string>
+
+    <string name="section_player">3. Confronto A/B e Risultato</string>
+    <string name="track_original">🔊 Originale</string>
+    <string name="track_cleaned">✨ Ripulito</string>
+    <string name="btn_share">📤 Condividi Audio Pulito</string>
+    <string name="btn_save">💾 Salva nei Download</string>
+
+    <string name="permission_mic_required">È necessario il permesso del microfono per registrare la voce.</string>
+    <string name="permission_storage_required">È necessario il permesso di lettura per aprire i file audio.</string>
+    <string name="error_no_audio">Carica o registra prima un file audio.</string>
+</resources>

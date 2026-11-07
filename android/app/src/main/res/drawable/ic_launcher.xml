@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Sfondo circolare blu -->
+    <path
+        android:fillColor="#2563EB"
+        android:pathData="M54,4 C26.386,4 4,26.386 4,54 C4,81.614 26.386,104 54,104 C81.614,104 104,81.614 104,54 C104,26.386 81.614,4 54,4 Z" />
+    <!-- Icona Microfono -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,26 C48.48,26 44,30.48 44,36 L44,52 C44,57.52 48.48,62 54,62 C59.52,62 64,57.52 64,52 L64,36 C64,30.48 59.52,26 54,26 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M70,48 L70,52 C70,60.84 62.84,68 54,68 C45.16,68 38,60.84 38,52 L38,48 L34,48 L34,52 C34,62.3 42.18,70.76 52.2,71.86 L52.2,78 L46,78 L46,82 L62,82 L62,78 L55.8,78 L55.8,71.86 C65.82,70.76 74,62.3 74,52 L74,48 L70,48 Z" />
+    <!-- Stellina brillante gialla per indicare pulizia neurale -->
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M78,24 L80,30 L86,32 L80,34 L78,40 L76,34 L70,32 L76,30 Z" />
+</vector>
