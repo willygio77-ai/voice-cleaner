@@ -66,3 +66,10 @@ $RECYCLE.BIN/
 # Coverage
 .coverage
 htmlcov/
+
+# Android build outputs and APKs
+*.apk
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
