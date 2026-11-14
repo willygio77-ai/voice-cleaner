@@ -110,6 +110,10 @@ class MainActivity : AppCompatActivity() {
             val timeStr = String.format(Locale.ITALIAN, "%02d:%02d", minutes, seconds)
             binding.tvAudioStatus.text = String.format(Locale.ITALIAN, getString(R.string.recording_active), timeStr)
         }
+
+        audioRecorder.onRecordingFinished = { file ->
+            loadAudioFromFile(file)
+        }
     }
 
     private fun setupPlayer() {
@@ -182,12 +186,6 @@ class MainActivity : AppCompatActivity() {
             binding.btnRecord.setIconResource(R.drawable.ic_mic)
             binding.btnRecord.setBackgroundColor(ContextCompat.getColor(this, R.color.primary))
             binding.btnOpenFile.isEnabled = true
-            binding.btnDenoise.isEnabled = true
-
-            val file = currentOriginalFile
-            if (file != null && file.exists()) {
-                loadAudioFromFile(file)
-            }
         }
     }
 

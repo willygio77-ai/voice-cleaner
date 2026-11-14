@@ -29,6 +29,7 @@ class AudioRecorder {
 
     var onAmplitudeListener: ((Float) -> Unit)? = null
     var onDurationListener: ((Long) -> Unit)? = null
+    var onRecordingFinished: ((File) -> Unit)? = null
 
     @SuppressLint("MissingPermission")
     fun startRecording(outputFile: File, coroutineScope: CoroutineScope) {
@@ -52,40 +53,46 @@ class AudioRecorder {
             val audioBuffer = ShortArray(bufferSize / 2)
             val byteBuffer = ByteBuffer.allocate(audioBuffer.size * 2).order(ByteOrder.LITTLE_ENDIAN)
 
-            // Scrittura intestazione provvisoria WAV
-            FileOutputStream(outputFile).use { fos ->
-                val emptyHeader = ByteArray(44)
-                fos.write(emptyHeader)
+            var totalBytesRead = 0L
+            val startTime = System.currentTimeMillis()
 
-                var totalBytesRead = 0L
-                val startTime = System.currentTimeMillis()
+            try {
+                // Scrittura intestazione provvisoria WAV
+                FileOutputStream(outputFile).use { fos ->
+                    val emptyHeader = ByteArray(44)
+                    fos.write(emptyHeader)
 
-                while (isActive && isRecording) {
-                    val readCount = audioRecord?.read(audioBuffer, 0, audioBuffer.size) ?: 0
-                    if (readCount > 0) {
-                        byteBuffer.clear()
-                        var maxAmp = 0f
-                        for (i in 0 until readCount) {
-                            val sample = audioBuffer[i]
-                            byteBuffer.putShort(sample)
-                            val abs = kotlin.math.abs(sample.toFloat()) / 32768.0f
-                            if (abs > maxAmp) maxAmp = abs
-                        }
-                        fos.write(byteBuffer.array(), 0, readCount * 2)
-                        totalBytesRead += readCount * 2
+                    while (isRecording) {
+                        val readCount = audioRecord?.read(audioBuffer, 0, audioBuffer.size) ?: 0
+                        if (readCount > 0) {
+                            byteBuffer.clear()
+                            var maxAmp = 0f
+                            for (i in 0 until readCount) {
+                                val sample = audioBuffer[i]
+                                byteBuffer.putShort(sample)
+                                val abs = kotlin.math.abs(sample.toFloat()) / 32768.0f
+                                if (abs > maxAmp) maxAmp = abs
+                            }
+                            fos.write(byteBuffer.array(), 0, readCount * 2)
+                            totalBytesRead += readCount * 2
 
-                        val elapsed = System.currentTimeMillis() - startTime
-                        withContext(Dispatchers.Main) {
-                            onAmplitudeListener?.invoke(maxAmp)
-                            onDurationListener?.invoke(elapsed)
+                            val elapsed = System.currentTimeMillis() - startTime
+                            withContext(Dispatchers.Main) {
+                                onAmplitudeListener?.invoke(maxAmp)
+                                onDurationListener?.invoke(elapsed)
+                            }
                         }
                     }
+                    fos.flush()
                 }
-                fos.flush()
 
-                // Aggiorna l'header WAV finale con le dimensioni reali
+                // Aggiorna l'header WAV finale con le dimensioni reali a file chiuso
                 fixWavHeader(outputFile, totalBytesRead)
-            }
+
+                withContext(Dispatchers.Main) {
+                    onRecordingFinished?.invoke(outputFile)
+                }
+            } catch (_: Exception) {}
         }
     }
 
@@ -97,8 +104,6 @@ class AudioRecorder {
             audioRecord?.release()
         } catch (_: Exception) {}
         audioRecord = null
-        recordingJob?.cancel()
-        recordingJob = null
     }
 
     private fun fixWavHeader(file: File, totalAudioBytes: Long) {
